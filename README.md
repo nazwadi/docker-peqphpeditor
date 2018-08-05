@@ -10,7 +10,17 @@ If you do not already have Docker installed on your machine, you can do so at ht
 3. Rename or copy the config.php.dist file in the peqphpeditor folder to config.php
 4. Edit the Environmental Variables in the docker-compose.yml file under the peqdb section to your desired database settings
 5. Make sure the variables in config.php match the environmental variables in your docker-compose.yml file
-6. From the root of this repository (where your docker-compose.yml file is), type docker-compose up --build from a terminal
+6. From the root of this repository (where your docker-compose.yml file is), type:
+
+```
+$ docker-compose up --build
+```
+
+To stop the containers, simply type
+```
+$ docker-compose stop
+```    
+The full reference can be found here: https://docs.docker.com/compose/reference/
 
 Your folder structure should look like this:
 
