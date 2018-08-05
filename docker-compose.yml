@@ -1,0 +1,38 @@
+version: '3'
+services:
+
+    peqphpeditor:
+        build: ./dockerfiles/peqphpeditor/
+        container_name: peqphpeditor
+        ports:
+            - "127.0.0.1:80:80"
+        networks:
+            - frontend
+            - backend
+        depends_on:
+            - db
+        volumes:
+            - ./peqphpeditor:/var/www/html
+    db:
+        build: ./dockerfiles/peqdb/
+        container_name: peqdb
+        ports:
+            - "127.0.0.1:3306:3306"
+        environment:
+            TZ: "America/New_York"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+            MYSQL_ROOT_PASSWORD: "test"
+            MYSQL_USER: "soandso"
+            MYSQL_PASSWORD: "test"
+            MYSQL_DATABASE: "eqemu"
+        volumes:
+            - ./entrypoint:/docker-entrypoint-initdb.d
+            - "dbdata:/var/lib/mysql"
+        networks:
+            - backend
+networks:
+    frontend:
+    backend:
+
+volumes:
+    dbdata:
